@@ -1,0 +1,36 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    script(type='text/javascript', src='http://code.jquery.com/jquery-2.1.0.min.js')
+    script(type='text/javascript', src='http://code.angularjs.org/angular-1.0.1.js')
+
+    script(type='text/javascript', src='../angular-scrollable-table.js')
+    script(type='text/javascript', src='test.js')
+
+    link(rel='stylesheet', href='http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css')
+
+  body(ng-app='myApp')
+    div(style='margin-top: 20px', ng-controller='MyCtrl')
+      scrollable-table(watch='visibleProjects')
+        table.table.table-striped.table-bordered
+          thead
+            tr
+              th(col='facility', sortable-header='') Facility
+              th(col='code', sortable-header='') Unit code
+              th(col='cost', sortable-header='') Cost
+              th(col='conditionRating', sortable-header='') Condition score
+              th(col='extent', sortable-header='') Replace %
+              th(comparator-fn='comparator', col='planYear', sortable-header='') Plan year
+          tbody
+            tr(ng-class='{info: selected == response.facility}', row-id='{{ response.facility }}', ng-repeat='response in visibleProjects')
+              td {{ response.facility }}
+              td {{ response.code }}
+              td {{ response.cost }}
+              td.cr
+                | {{ response.conditionRating }}
+              td {{ response.extent }}
+              td {{ response.planYear }}
+      div
+        label Select a facility:
+        select(ng-options='f for f in facilities', ng-model='selected')
