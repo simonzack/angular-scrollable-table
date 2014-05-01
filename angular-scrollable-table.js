@@ -38,11 +38,8 @@
         }
 
         // Fix the widths of the table headers, so scrollable table works.
-        function fixHeaderWidths() {
-          if(!$element.find('thead th .th-inner').length)
-            $element.find('thead th').wrapInner('<div class="th-inner"></div>');
-
-          $element.find('table th .th-inner').each(function(index, el) {
+        function fixWidths() {
+          $element.find('table th').each(function(index, el) {
             el = $(el);
             var padding = el.outerWidth() - el.width();
             var width = el.parent().width() - padding;
@@ -54,23 +51,17 @@
                 width += $element.find('.scrollArea').width() - $element.find('tbody tr').width();
               }
             }
-
             el.css('width', width);
-            var title = el.parent().attr('title');
-            if(!title) {
-              title = el.children().length ? el.find('.title .ng-scope').html() : el.html();
-            }
-            el.attr('title', title);
           });
         }
 
-        $(window).resize(fixHeaderWidths);
+        // Fix header widths on window resize.
+        $(window).resize(fixWidths);
 
-        // when the data model changes, fix the header widths.  See the comments here:
-        // http://docs.angularjs.org/api/ng.$timeout
+        // Fix header widths when the data model changes.
         $scope.$watch('rows', function(newValue, oldValue) {
           if(newValue) {
-            waitForRender().then(fixHeaderWidths);
+            waitForRender().then(fixWidths);
           }
         });
       }]
