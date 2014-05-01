@@ -1,20 +1,8 @@
 
-/* table borders */
-
-.scrollArea table tbody tr td {
-  border-right: 0px;
-  border-bottom: 0px;
-  border: 1px solid #CCC;
-}
-
 /* scrollable table */
 
 .scrollableContainer {
-  border: 1px solid #CCC;
-  height: 283px;
   position: relative;
-  padding-top: 21px;
-  width: 756px;
 }
 
 .scrollArea {
@@ -34,12 +22,4 @@
 .scrollArea table thead {
   position: absolute;
   top: 0;
-  height: 21px;
-}
-
-.scrollArea table th {
-  border: 1px solid #ddd;
-  border-right: 0px;
-  border-bottom: 0px;
-  border-top: 0px;
 }

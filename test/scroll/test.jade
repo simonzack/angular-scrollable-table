@@ -13,7 +13,7 @@ html(lang="en")
     link(rel='stylesheet', href='test.css')
 
   body(ng-app='myApp')
-    div(style='margin-top: 20px', ng-controller='MyCtrl')
+    div(ng-controller='MyCtrl')
       scrollable-table(watch='visibleProjects')
         table.table.table-striped.table-bordered
           thead

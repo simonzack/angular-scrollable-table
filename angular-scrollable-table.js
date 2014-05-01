@@ -36,31 +36,36 @@
           return deferredRender.promise;
         }
 
-        // Fix the widths of the table headers, so scrollable table works.
-        function fixWidths() {
-          $element.find('table th').each(function(index, el) {
-            el = $(el);
-            var padding = el.outerWidth() - el.width();
-            var width = el.parent().width() - padding;
-            // For the last header, add space for the scrollbar equivalent unless it's centered.
-            var lastCol = $element.find('table th:visible:last');
-            if(lastCol.css('text-align') !== 'center') {
-              var hasScrollbar = $element.find('.scrollArea').height() < $element.find('table').height();
-              if(lastCol[0] == el.parent()[0] && hasScrollbar) {
-                width += $element.find('.scrollArea').width() - $element.find('tbody tr').width();
-              }
-            }
-            el.css('width', width);
+        // fix the distances of the table headers, so scrollable table works
+        function fixDistances() {
+          // fix widths
+          var row = $element.find('table > tbody > tr:first > td');
+          if(!row.length)
+            return;
+          $element.find('table > thead > tr > th').each(function(i, th) {
+            // ignore the last header
+            if(i==row.length-1)
+              return;
+            th = $(th);
+            var padding = th.outerWidth() - th.width();
+            var width = row[i].offsetWidth;
+            th.css('width', width - padding);
+            th.css('max-width', width - padding);
           });
+          // fix heights
+          var headRows = $element.find('table > thead > tr');
+          if(!headRows.length)
+            return;
+          $('.scrollableContainer').css('padding-top', headRows[0].offsetHeight);
         }
 
-        // Fix header widths on window resize.
-        $(window).resize(fixWidths);
+        // fix header widths on window resize
+        $(window).resize(fixDistances);
 
-        // Fix header widths when the data model changes.
+        // fix header widths when the data model changes
         $scope.$watch('rows', function(newValue, oldValue) {
           if(newValue) {
-            waitForRender().then(fixWidths);
+            waitForRender().then(fixDistances);
           }
         });
       }]
