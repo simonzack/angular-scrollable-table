@@ -20,6 +20,7 @@
         '<div class="scrollContainer">' +
           '<div class="scrollArea" ng-transclude></div>' +
         '</div>',
+
       controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
         // There's no event fired when rendering is complete ($viewContentLoaded does not work),
         // so use setTimeout() instead.
