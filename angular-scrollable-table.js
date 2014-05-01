@@ -9,15 +9,14 @@
       scope: {
         rows: '=watch',
       },
-      template: '<div class="scrollableContainer">' +
+      template:
+        '<div class="scrollableContainer">' +
           '<div class="headerSpacer"></div>' +
           '<div class="scrollArea" ng-transclude></div>' +
         '</div>',
       controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
-
-        // Set fixed widths for the table headers in case the text overflows.
-        // There's no callback for when rendering is complete, so check the visibility of the table
-        // periodically -- see http://stackoverflow.com/questions/11125078
+        // There's no event fired when rendering is complete ($viewContentLoaded does not work),
+        // so use setTimeout() instead.
         function waitForRender() {
           var deferredRender = $q.defer();
           function wait() {
@@ -31,7 +30,7 @@
           return deferredRender.promise;
         }
 
-        var headersAreFixed = $q.defer();
+        // Set fixed widths for the table headers in case the text overflows.
         function fixHeaderWidths() {
           if(!$element.find("thead th .th-inner").length)
             $element.find("thead th").wrapInner('<div class="th-inner"></div>');
@@ -56,7 +55,6 @@
             }
             el.attr("title", title);
           });
-          headersAreFixed.resolve();
         }
 
         $(window).resize(fixHeaderWidths);
