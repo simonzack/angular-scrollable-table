@@ -1,10 +1,10 @@
 
-/* global $ */
+/* global angular, $ */
 
 (function(angular) {
   'use strict';
-  angular.module('scrollable-table', [])
 
+  angular.module('scrollable-table', [])
   .directive('scrollableTable', ['$timeout', '$q', function($timeout, $q) {
     /**
     Scrollable table implementation, works by separating the headers from the table body, and scrolling the table body.
