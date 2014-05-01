@@ -8,7 +8,6 @@
       restrict: 'E',
       scope: {
         rows: '=watch',
-        sortFn: '='
       },
       template: '<div class="scrollableContainer">' +
           '<div class="headerSpacer"></div>' +
@@ -69,9 +68,6 @@
             waitForRender().then(fixHeaderWidths);
           }
         });
-
-        $scope.asc = !$attrs.hasOwnProperty("desc");
-        $scope.sortAttr = $attrs.sortAttr;
       }]
     };
   }]);
