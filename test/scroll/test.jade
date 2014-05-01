@@ -25,7 +25,7 @@ html(lang="en")
               th(col='extent') Replace %
               th(col='planYear') Plan year
           tbody
-            tr(ng-class='{info: selected == response.facility}', row-id='{{ response.facility }}', ng-repeat='response in visibleProjects')
+            tr(row-id='{{ response.facility }}', ng-repeat='response in visibleProjects')
               td {{ response.facility }}
               td {{ response.code }}
               td {{ response.cost }}
