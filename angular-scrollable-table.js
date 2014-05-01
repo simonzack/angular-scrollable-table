@@ -6,6 +6,10 @@
   angular.module('scrollable-table', [])
 
   .directive('scrollableTable', ['$timeout', '$q', function($timeout, $q) {
+    /**
+    Scrollable table implementation, works by separating the headers from the table body, and scrolling the table body.
+    */
+
     return {
       transclude: true,
       restrict: 'E',
@@ -33,7 +37,7 @@
           return deferredRender.promise;
         }
 
-        // Set fixed widths for the table headers in case the text overflows.
+        // Fix the widths of the table headers, so scrollable table works.
         function fixHeaderWidths() {
           if(!$element.find('thead th .th-inner').length)
             $element.find('thead th').wrapInner('<div class="th-inner"></div>');
