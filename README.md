@@ -1,20 +1,11 @@
-angular-scrollable-table
-========================
+# angular-scrollable-table
 
-Yet another table directive for AngularJS.
+Provides a directive which converts a table to a scrollable one with a fixed header.
 
-This one features a fixed header that elegantly handles overly-long column header names.
+## Aims
 
-Other features:
-* Scroll to row
-* Sortable header with custom comparator functions
+* Modify the existing html as little as possible, with no modification of the original table.
+* Existing user css is modified as little as possible, possibly adding css for the container element.
 
-Usage:
-`angular.module('myApp', ['scrollable-table', ...]);`
-
-Demo here: http://jsfiddle.net/alalonde/BrTzg/
-
-More infomation here: http://blog.boxelderweb.com/2013/12/19/angularjs-fixed-header-scrollable-table/
-
-TODO:
+## TODO:
 * Hide table until fully rendered to avoid flickering of header?
