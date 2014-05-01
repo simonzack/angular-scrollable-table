@@ -68,21 +68,8 @@ var myApp = angular.module('myApp',['scrollable-table'])
         }];
     };
 })
-// when sorting by year, sort by year and then replace %
-.service("Comparators", function() {
-    this.year = function(r1, r2) {
-        if(r1.planYear === r2.planYear) {
-            if (r1.extent === r2.extent) return 0;
-            return r1.extent > r2.extent ? 1 : -1;
-        } else if(!r1.planYear || !r2.planYear) {
-            return !r1.planYear && !r2.planYear ? 0 : (!r1.planYear ? 1 : -1);
-        }
-        return r1.planYear > r2.planYear ? 1 : -1;
-    };
-})
-.controller('MyCtrl', function($scope, Data, Comparators) {
+.controller('MyCtrl', function($scope, Data) {
     $scope.visibleProjects = Data.get();
-    $scope.comparator = Comparators.year;
     $scope.facilities = [];
     for(var i = 0; i < $scope.visibleProjects.length; i++) {
         $scope.facilities.push($scope.visibleProjects[i].facility);

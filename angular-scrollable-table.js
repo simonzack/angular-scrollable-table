@@ -15,56 +15,6 @@
           '<div class="scrollArea" ng-transclude></div>' +
         '</div>',
       controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
-        // define an API for child directives to view and modify sorting parameters
-        this.getSortCol = function() {
-          return $scope.sortAttr;
-        };
-        this.isAsc = function() {
-          return $scope.asc;
-        };
-        this.setSortCol = function(col) {
-          $scope.asc = true;
-          $scope.sortAttr = col;
-        };
-        this.toggleSort = function() {
-          $scope.asc = !$scope.asc;
-        };
-
-        this.doSort = function(comparatorFn) {
-          if(comparatorFn) {
-            $scope.rows.sort(function(r1, r2) {
-              var compared = comparatorFn(r1, r2);
-              return $scope.asc ? compared : compared * -1;
-            });
-          } else {
-            $scope.rows.sort(function(r1, r2) {
-              var compared = defaultCompare(r1[$scope.sortAttr], r2[$scope.sortAttr]);
-              return $scope.asc ? compared : compared * -1;
-            });
-          }
-        };
-
-        function defaultCompare(x, y) {
-          if (x === y) return 0;
-          return x > y ? 1 : -1;
-        }
-
-        function scrollToRow(row) {
-          var offset = $element.find(".headerSpacer").height();
-          var currentScrollTop = $element.find(".scrollArea").scrollTop();
-          $element.find(".scrollArea").scrollTop(currentScrollTop + row.position().top - offset);
-        }
-
-        $scope.$on('rowSelected', function(event, rowId) {
-          var row = $element.find(".scrollArea table tr[row-id='" + rowId + "']");
-          if(row.length === 1) {
-            // Ensure that the headers have been fixed before scrolling, to ensure accurate
-            // position calculations
-            $q.all([waitForRender(), headersAreFixed.promise]).then(function() {
-              scrollToRow(row);
-            });
-          }
-        });
 
         // Set fixed widths for the table headers in case the text overflows.
         // There's no callback for when rendering is complete, so check the visibility of the table
@@ -124,49 +74,5 @@
         $scope.sortAttr = $attrs.sortAttr;
       }]
     };
-  }])
-  .directive('sortableHeader', function() {
-    return {
-      transclude: true,
-      scope: true,
-      require: '^scrollableTable',
-      template: '<div ng-mouseenter="enter()" ng-mouseleave="leave()">' +
-          '<div class="title" ng-transclude></div>' +
-          '<span class="orderWrapper">' +
-            '<span class="order" ng-show="focused || isActive()" ng-click="toggleSort()">' +
-              '<i ng-show="isAscending()" class="icon-arrow-up"></i>' +
-              '<i ng-show="!isAscending()" class="icon-arrow-down"></i>' +
-            '</span>' +
-          '</span>' +
-        '</div>',
-      link: function(scope, elm, attrs, tableController) {
-        scope.isActive = function() {
-          return tableController.getSortCol() === attrs.col;
-        };
-        scope.toggleSort = function() {
-          if(scope.isActive()) {
-            tableController.toggleSort();
-          } else {
-            tableController.setSortCol(attrs.col);
-          }
-          tableController.doSort(scope[attrs.comparatorFn]);
-        };
-        scope.isAscending = function() {
-          if(scope.focused && !scope.isActive()) {
-            return true;
-          } else {
-            return tableController.isAsc();
-          }
-        };
-
-        scope.enter = function() {
-          scope.focused = true;
-        };
-        scope.leave = function() {
-          scope.focused = false;
-        };
-      }
-    };
-  })
-  ;
+  }]);
 })(angular);
