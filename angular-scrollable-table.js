@@ -1,3 +1,6 @@
+
+/* global $ */
+
 (function(angular) {
   'use strict';
   angular.module('scrollable-table', [])
