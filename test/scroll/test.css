@@ -8,24 +8,16 @@ body > div {
 
 .scrollContainer {
   border: 1px solid #CCC;
+  border-radius: 5px;
   height: 283px;
   width: 756px;
 }
 
 .scrollArea table th {
-  border: 1px solid #ddd;
-  border-right: 0px;
-  border-bottom: 0px;
-  border-top: 0px;
-}
-
-.scrollArea table tbody tr td {
-  border-right: 0px;
-  border-bottom: 0px;
-  border: 1px solid #CCC;
+  border-bottom: 1px solid #CCC;
 }
 
 .scrollArea table {
-    border: none;
-    border-collapse: separate;
+  border: none;
+  border-collapse: separate;
 }

@@ -40,24 +40,29 @@
         // fix the distances of the table headers, so scrollable table works
         function fixDistances() {
           // fix widths
-          var row = $element.find('table > tbody > tr:first > td');
-          if(!row.length)
+          var row = $element.find('table > tbody > tr:first');
+          if(!row)
             return;
+          row = row[0];
+          var cells = row.children;
           $element.find('table > thead > tr > th').each(function(i, th) {
-            // ignore the last header
-            if(i==row.length-1)
-              return;
             th = $(th);
-            var padding = th.outerWidth() - th.width();
-            var width = row[i].offsetWidth;
-            th.css('width', width - padding);
-            th.css('max-width', width - padding);
+            if(i<cells.length-1){
+              var padding = th.outerWidth() - th.width();
+              var width = cells[i].offsetWidth;
+              th.css('width', width - padding);
+              th.css('max-width', width - padding);
+            }else{
+              // last header includes the scrollbar, use 100% width
+              th.css('width', th.width() - th.parent().width() + $(row).parent().parent().width());
+            }
           });
           // fix heights
-          var headRows = $element.find('table > thead > tr:first');
-          if(!headRows.length)
+          var headRow = $element.find('table > thead > tr:first');
+          if(!headRow.length)
             return;
-          $('.scrollContainer').css('padding-top', headRows[0].offsetHeight);
+          headRow = headRow[0];
+          $('.scrollContainer').css('padding-top', headRow.offsetHeight);
         }
 
         // fix header widths on window resize
