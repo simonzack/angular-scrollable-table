@@ -37,7 +37,7 @@
           return deferredRender.promise;
         }
 
-        // fix the distances of the table headers, so scrollable table works
+        // fix distances, so the table header is aligned with it's cells
         function fixDistances() {
           // fix widths
           var row = $element.find('table > tbody > tr:first');
