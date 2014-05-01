@@ -17,7 +17,7 @@
         rows: '=watch',
       },
       template:
-        '<div class="scrollableContainer">' +
+        '<div class="scrollContainer">' +
           '<div class="scrollArea" ng-transclude></div>' +
         '</div>',
       controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
@@ -56,7 +56,7 @@
           var headRows = $element.find('table > thead > tr');
           if(!headRows.length)
             return;
-          $('.scrollableContainer').css('padding-top', headRows[0].offsetHeight);
+          $('.scrollContainer').css('padding-top', headRows[0].offsetHeight);
         }
 
         // fix header widths on window resize

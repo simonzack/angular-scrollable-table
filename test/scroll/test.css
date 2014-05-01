@@ -6,6 +6,12 @@ body > div {
 
 /* table borders */
 
+.scrollContainer {
+  border: 1px solid #CCC;
+  height: 283px;
+  width: 756px;
+}
+
 .scrollArea table th {
   border: 1px solid #ddd;
   border-right: 0px;
@@ -17,12 +23,6 @@ body > div {
   border-right: 0px;
   border-bottom: 0px;
   border: 1px solid #CCC;
-}
-
-.scrollableContainer {
-  border: 1px solid #CCC;
-  height: 283px;
-  width: 756px;
 }
 
 .scrollArea table {
