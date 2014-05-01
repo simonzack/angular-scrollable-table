@@ -74,8 +74,4 @@ var myApp = angular.module('myApp',['scrollable-table'])
     for(var i = 0; i < $scope.visibleProjects.length; i++) {
         $scope.facilities.push($scope.visibleProjects[i].facility);
     }
-
-    $scope.$watch('selected', function(fac) {
-        $scope.$broadcast("rowSelected", fac);
-    });
 });
