@@ -43,13 +43,3 @@
   border-bottom: 0px;
   border-top: 0px;
 }
-
-.scrollArea thead th:nth-child(1) {
-  width: 177px
-}
-.scrollArea thead th:nth-child(2) {
-  width: 205px
-}
-.scrollArea thead th:nth-child(3) {
-  width: 316px
-}
