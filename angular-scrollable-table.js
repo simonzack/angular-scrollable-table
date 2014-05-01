@@ -42,7 +42,7 @@
             el = $(el);
             var padding = el.outerWidth() - el.width();
             var width = el.parent().width() - padding;
-            // if it's the last header, add space for the scrollbar equivalent unless it's centered
+            // For the last header, add space for the scrollbar equivalent unless it's centered.
             var lastCol = $element.find('table th:visible:last');
             if(lastCol.css('text-align') !== 'center') {
               var hasScrollbar = $element.find('.scrollArea').height() < $element.find('table').height();
