@@ -14,12 +14,13 @@
 .scrollArea table {
   overflow-x: hidden;
   overflow-y: auto;
-  margin-bottom: 0;
-  border: none;
-  border-collapse: separate;
 }
 
 .scrollArea table thead {
   position: absolute;
   top: 0;
+}
+
+.scrollArea table {
+    margin-bottom: 0;
 }

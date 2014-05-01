@@ -24,3 +24,8 @@ body > div {
   height: 283px;
   width: 756px;
 }
+
+.scrollArea table {
+    border: none;
+    border-collapse: separate;
+}
