@@ -53,7 +53,7 @@
             th.css('max-width', width - padding);
           });
           // fix heights
-          var headRows = $element.find('table > thead > tr');
+          var headRows = $element.find('table > thead > tr:first');
           if(!headRows.length)
             return;
           $('.scrollContainer').css('padding-top', headRows[0].offsetHeight);
