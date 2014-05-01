@@ -23,7 +23,7 @@
         function waitForRender() {
           var deferredRender = $q.defer();
           function wait() {
-            if($element.find("table:visible").length === 0) {
+            if($element.find('table:visible').length === 0) {
               $timeout(wait, 100);
             } else {
               deferredRender.resolve();
@@ -35,28 +35,28 @@
 
         // Set fixed widths for the table headers in case the text overflows.
         function fixHeaderWidths() {
-          if(!$element.find("thead th .th-inner").length)
-            $element.find("thead th").wrapInner('<div class="th-inner"></div>');
+          if(!$element.find('thead th .th-inner').length)
+            $element.find('thead th').wrapInner('<div class="th-inner"></div>');
 
-          $element.find("table th .th-inner").each(function(index, el) {
+          $element.find('table th .th-inner').each(function(index, el) {
             el = $(el);
             var padding = el.outerWidth() - el.width();
             var width = el.parent().width() - padding;
             // if it's the last header, add space for the scrollbar equivalent unless it's centered
-            var lastCol = $element.find("table th:visible:last");
-            if(lastCol.css("text-align") !== "center") {
-              var hasScrollbar = $element.find(".scrollArea").height() < $element.find("table").height();
+            var lastCol = $element.find('table th:visible:last');
+            if(lastCol.css('text-align') !== 'center') {
+              var hasScrollbar = $element.find('.scrollArea').height() < $element.find('table').height();
               if(lastCol[0] == el.parent()[0] && hasScrollbar) {
-                width += $element.find(".scrollArea").width() - $element.find("tbody tr").width();
+                width += $element.find('.scrollArea').width() - $element.find('tbody tr').width();
               }
             }
 
-            el.css("width", width);
-            var title = el.parent().attr("title");
+            el.css('width', width);
+            var title = el.parent().attr('title');
             if(!title) {
-              title = el.children().length ? el.find(".title .ng-scope").html() : el.html();
+              title = el.children().length ? el.find('.title .ng-scope').html() : el.html();
             }
-            el.attr("title", title);
+            el.attr('title', title);
           });
         }
 
