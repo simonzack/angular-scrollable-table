@@ -7,7 +7,7 @@
   angular.module('scrollable-table', [])
   .directive('scrollableTable', ['$timeout', '$q', function($timeout, $q) {
     /**
-    Scrollable table implementation, works by separating the headers from the table body, and scrolling the table body.
+    Scrollable table implementation, works by placing the headers absolutely, and scrolling the table body.
     */
 
     return {
@@ -18,7 +18,6 @@
       },
       template:
         '<div class="scrollableContainer">' +
-          '<div class="headerSpacer"></div>' +
           '<div class="scrollArea" ng-transclude></div>' +
         '</div>',
       controller: ['$scope', '$element', '$attrs', function($scope, $element, $attrs) {
